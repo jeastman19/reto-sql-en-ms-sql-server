@@ -22,7 +22,8 @@ select  *
         where   s.product_id = @product_id
                 and s.fecha_ult_actualizacion = (select max(fecha_ult_actualizacion)
                     from    stocks s1
-                    where   s1.product_id = s.product_id);
+                    where   s1.product_id = s.product_id)
+                            and s1.fecha_ult_actualizacion <= @fecha;
 ```
 
 Esta solución, aún cuando se que retornará lo que se pide, tengo la impresión que la misma no es tan eficiente.
